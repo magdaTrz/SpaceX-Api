@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/MissionFormStyles.css";
 
 //whatever ? true : false
 
@@ -7,8 +8,8 @@ const MissionForm = (props) => {
         <div>
             {
                 props.ifFetchingData ? 
-                (<p>Loading upcomming missions...</p>) : 
-                (<button onClick= {props.getDataBtn}> Get updated missions </button>)
+                (<p>Ładowanie danych o misji...</p>) : 
+                (<button onClick= {props.getDataBtn}> Pobierz dane o misjach </button>)
             }
         </div>
     );

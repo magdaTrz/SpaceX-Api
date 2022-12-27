@@ -3,6 +3,7 @@ import axios from "axios";
 import ReactDOM from "react-dom";
 import MissionForm from "./components/MissionForm";
 import MissionsList from "./components/MissionsList";
+import "./App.css";
 
 function App() {
   
@@ -30,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Space X Upcomming Missions</h1>
+      <h1>Misje Space X</h1>
       <MissionForm getDataBtn={getData} isFetchingData={isFetchingData} />
       <MissionsList missionsDisplay={missions} errorDisplay={error} />
     </div>
