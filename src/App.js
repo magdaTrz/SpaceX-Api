@@ -11,23 +11,28 @@ function App() {
   const [missions, setMissions] = useState([]);
 
   const getData = () => {
-    console.log("botton pushed");
+
+    setIsFetchingData(true);
+
     axios
       .get("https://api.spacexdata.com/v3/missions")
       .then(response => {
-        console.log('response: ' + response)
+        setMissions(response.data);
+        console.log("response:" + response.data);
+        setIsFetchingData(false);
       })
       .catch(error => {
-      console.log(`error  ${error}`)
-      setError(error);
+        console.log(`error  ${error}`)
+        setError(error);
+        setIsFetchingData(false);
     })
-  }
+  };
 
   return (
     <div className="App">
       <h1>Space X Upcomming Missions</h1>
-      <MissionForm getDataBtn={getData} />
-      <MissionsList name={"balasdad"} />
+      <MissionForm getDataBtn={getData} isFetchingData={isFetchingData} />
+      <MissionsList missionsDisplay={missions} errorDisplay={error} />
     </div>
   );
 }
