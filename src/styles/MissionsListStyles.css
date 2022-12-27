@@ -1,3 +1,9 @@
 .missions {
+    display: flex;
+    flex-direction: column;
+}
 
+.mission {
+    padding-bottom: 2rem;
+    
 }
