@@ -65,8 +65,21 @@ const Modal = (prop) => (
                     <h4>First flight</h4>
                     <p>{prop.rocket.first_flight}</p>
                 </div>
-
+                <div className="col-sm-3">
+                    <h4>Active</h4>
+                    <p>{prop.rocket.active ? `Yes` : `No`}</p>
+                </div>
+                <div className="col-sm-3">
+                    <h4>Country </h4>
+                    <p>{prop.rocket.country}</p>
+                </div>
+                <div className="col-sm-3">
+                    <h4>Cost per launch </h4>
+                    <p>{prop.rocket.cost_per_launch/1000000}$ million </p>
+                </div>
             </div>
+            <p>{prop.rocket.description}</p>
+            <a href={prop.rocket.wikipedia}> For more info visit Wikipedia Page</a>
         </div>
       </div>
     </div>
