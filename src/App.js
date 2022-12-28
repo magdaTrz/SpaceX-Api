@@ -16,7 +16,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch('https://api.spacexdata.com/v4/rockets')
+    fetch('http://localhost:8000/rockets')
       .then( (response) => response.json() )
       .then( (rockets) => this.setState( {
         rockets: rockets
@@ -35,7 +35,7 @@ class App extends Component {
 
     return (
       <div className="container">
-      <h1>SpaceX</h1>
+      <h1>SpaceX Journal</h1>
       <Filter onChange={this.handleChange}/>
         <div className="row">
           {filteredRockets.map((rocket) => (
