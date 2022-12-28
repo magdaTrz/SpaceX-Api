@@ -1,41 +1,41 @@
-import React, {useState} from "react";
-import axios from "axios";
-import ReactDOM from "react-dom";
-import MissionForm from "./components/MissionForm";
-import MissionsList from "./components/MissionsList";
+import {useState, Component, Fragment} from "react";
 import "./App.css";
 
-function App() {
-  
-  const [error, setError] = useState('');
-  const [isFetchingData, setIsFetchingData] = useState(false);
-  const [missions, setMissions] = useState([]);
+import Card from "./components/Card";
+import Modal from "./components/Modal";
 
-  const getData = () => {
+class App extends Component {
+  constructor() {
+    super();
 
-    setIsFetchingData(true);
-
-    axios
-      .get("https://api.spacexdata.com/v3/missions")
-      .then(response => {
-        setMissions(response.data);
-        console.log("response:" + response.data);
-        setIsFetchingData(false);
-      })
-      .catch(error => {
-        console.log(`error  ${error}`)
-        setError(error);
-        setIsFetchingData(false);
-    })
+    this.state = {
+      rockets: []
+    };
   };
 
-  return (
-    <div className="App">
-      <h1>Misje Space X</h1>
-      <MissionForm getDataBtn={getData} isFetchingData={isFetchingData} />
-      <MissionsList missionsDisplay={missions} errorDisplay={error} />
-    </div>
-  );
+  componentDidMount() {
+    fetch('https://api.spacexdata.com/v4/rockets')
+      .then( (response) => response.json() )
+      .then( (rockets) => this.setState( {
+        rockets: rockets
+      }));
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          {this.state.rockets.map((rocket) => (
+            <Fragment>
+              <Card rocket={rocket} />
+              <Modal rocket={rocket} />
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
 }
 
 export default App;
